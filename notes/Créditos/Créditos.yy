@@ -1,0 +1,11 @@
+{
+  "$GMNotes":"",
+  "%Name":"Créditos",
+  "name":"Créditos",
+  "parent":{
+    "name":"PI_game",
+    "path":"PI_game.yyp",
+  },
+  "resourceType":"GMNotes",
+  "resourceVersion":"2.0",
+}
