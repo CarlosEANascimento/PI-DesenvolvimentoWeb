@@ -39,6 +39,7 @@
   "resources":[
     {"id":{"name":"fnt_consolas","path":"fonts/fnt_consolas/fnt_consolas.yy",},},
     {"id":{"name":"Créditos","path":"notes/Créditos/Créditos.yy",},},
+    {"id":{"name":"obj_block","path":"objects/obj_block/obj_block.yy",},},
     {"id":{"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",},},
     {"id":{"name":"obj_console","path":"objects/obj_console/obj_console.yy",},},
     {"id":{"name":"obj_enviroment","path":"objects/obj_enviroment/obj_enviroment.yy",},},
@@ -48,6 +49,7 @@
     {"id":{"name":"spr_bard_mage_spell","path":"sprites/spr_bard_mage_spell/spr_bard_mage_spell.yy",},},
     {"id":{"name":"spr_bard_mage","path":"sprites/spr_bard_mage/spr_bard_mage.yy",},},
     {"id":{"name":"spr_blinded_grimlock","path":"sprites/spr_blinded_grimlock/spr_blinded_grimlock.yy",},},
+    {"id":{"name":"spr_block","path":"sprites/spr_block/spr_block.yy",},},
     {"id":{"name":"spr_cam_icon","path":"sprites/spr_cam_icon/spr_cam_icon.yy",},},
     {"id":{"name":"spr_console_icon","path":"sprites/spr_console_icon/spr_console_icon.yy",},},
     {"id":{"name":"spr_corrupted_treant","path":"sprites/spr_corrupted_treant/spr_corrupted_treant.yy",},},

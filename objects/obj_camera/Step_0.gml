@@ -23,9 +23,11 @@ if(keyboard_check_released(vk_f5)){
 camera_set_view_pos(cam, cam_x, cam_y);
 camera_set_view_size(cam, resolution_w/ratio*zoom, resolution_h/ratio*zoom);
 
-if(mouse_wheel_down() && zoom < 0.7){
-	zoom += 0.01;
-}
-if(mouse_wheel_up() && zoom > 0.3){
-	zoom -= 0.01;
+if(!global.console_select){
+	if(mouse_wheel_down() && zoom < 0.7){
+		zoom += 0.01;
+	}
+	if(mouse_wheel_up() && zoom > 0.3){
+		zoom -= 0.01;
+	}
 }

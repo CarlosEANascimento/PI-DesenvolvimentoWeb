@@ -4,8 +4,16 @@ y_axis = 0;
 sense = 1; //1 -> down, 0 -> side, -1 -> up
 
 state_idle_walk = function(){
-	vspeed = y_axis;
-	hspeed = x_axis;
+	if(!place_meeting(x+x_axis, y, obj_block)){
+		hspeed = x_axis;
+	}else{
+		hspeed = 0;
+	}
+	if(!place_meeting(x, y+y_axis, obj_block)){
+		vspeed = y_axis;
+	}else{
+		vspeed = 0;
+	}
 	
 	if(x_axis == 0 && y_axis == 0){
 		switch(sense){
