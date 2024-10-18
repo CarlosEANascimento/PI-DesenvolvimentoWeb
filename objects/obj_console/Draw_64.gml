@@ -65,16 +65,16 @@ if(global.tab){
 	#region console text
 	if(global.console_select){
 		if(keyboard_check_released(vk_enter) && keyboard_string != ""){
+			actual_command = keyboard_string;
 			commands[n_command] = keyboard_string;
 			n_command++;
+			index_command = n_command;
 			keyboard_string = "";
 			if(n_command > _console_n_lines){
 				offset++;
 			}
 		}
-	}
 	
-	if(global.console_select){
 		if(_console_n_lines > n_command){
 			draw_text_ext(_console_textbox_x1,_console_textbox_y1 + _str_h * n_command, keyboard_string, 0, _console_textbox_w);
 			draw_set_alpha(sin(n * 0.25));
@@ -95,6 +95,14 @@ if(global.tab){
 			}else if(mouse_wheel_down() && offset + _console_n_lines + 1 <= n_command){
 				offset++;
 			}
+		}
+		
+		if(n_command > 0 && keyboard_check_released(vk_down) && index_command + 1 < n_command){
+			index_command++;
+			keyboard_string = commands[index_command];
+		}else if(n_command > 0 && keyboard_check_released(vk_up) && index_command - 1 > -1){
+			index_command--;
+			keyboard_string = commands[index_command];
 		}
 	}
 	
