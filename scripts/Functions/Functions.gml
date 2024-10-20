@@ -77,3 +77,22 @@ function surname_by_type(_type){
 		case 5: return "Sortílego";
 	}
 }
+
+//function search_for_valid_command(_args_arr, _commands_list){
+//	if(!is_array(_args_arr) || !is_array(_commands_list)){
+//		return 0;
+//	}
+	
+//	var _i = 0;
+//	var _j = 0;
+	
+//	while(_j < array_length(_commands_list)){
+//		for(_i = array_length(_args_arr) - 1; _i >= 0; _i--){
+//			if(_commands_list[_j] == _args_arr[_i]){
+//				return _args_arr[_i];
+//			}
+//		}
+//		_j++;
+//	}
+//	return 0;
+//}

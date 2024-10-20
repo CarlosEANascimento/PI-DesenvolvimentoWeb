@@ -40,6 +40,7 @@
   "name":"PI_game",
   "resources":[
     {"id":{"name":"fnt_consolas","path":"fonts/fnt_consolas/fnt_consolas.yy",},},
+    {"id":{"name":"Códigos","path":"notes/Códigos/Códigos.yy",},},
     {"id":{"name":"Créditos","path":"notes/Créditos/Créditos.yy",},},
     {"id":{"name":"obj_bard_mage_spell","path":"objects/obj_bard_mage_spell/obj_bard_mage_spell.yy",},},
     {"id":{"name":"obj_bard_mage","path":"objects/obj_bard_mage/obj_bard_mage.yy",},},
