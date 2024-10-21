@@ -120,5 +120,6 @@ function toelement(_element){
 	switch _element{
 		case "obj_block": return obj_block;
 		case "obj_bard_mage": return obj_bard_mage;
+		case "target": return obj_target;
 	}
 }

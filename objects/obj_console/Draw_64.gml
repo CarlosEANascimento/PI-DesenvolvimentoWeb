@@ -104,7 +104,7 @@ if(global.tab){
 						}
 						break;
 					case "spawn":
-						//_response = instance_create_layer(real(args_action[1]),real(args_action[2]),"Instances_1",toelement(args_action[3]));
+						_response = instance_create_layer(real(args_action[1])*16,real(args_action[2])*16,"Instances_1",toelement(args_action[3]));
 						break;
 					default:
 						_response = "comando não encontrado. tente novamente.";

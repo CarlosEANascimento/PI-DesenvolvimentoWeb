@@ -20,7 +20,7 @@ arr_commands = [
 ];
 
 function draw_cartesian_plan(){
-	depth = layer_get_depth(obj_player.layer) - 1;
+	depth = layer_get_depth(obj_player.layer) + 1;
 	
 	var _room_w = room_width;
 	var _room_h = room_height;
@@ -48,7 +48,7 @@ function draw_cartesian_plan(){
 	}
 	draw_set_alpha(1);
 	
-	draw_set_font(fnt_consolas);
+	draw_set_font(fnt_monogram);
 	draw_set_halign(fa_center);
 	for(_i = 16; _i <= _room_w; _i += 16){
 		draw_text_transformed(_i, _cam_y, _i/16, 0.5*obj_camera.zoom, 0.5*obj_camera.zoom, 0);
