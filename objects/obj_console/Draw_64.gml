@@ -45,7 +45,7 @@ if(global.tab){
 	}
 	
 	if(mouse_check_button_released_out_gui_area(_console_x1, _console_y1, _console_x2, _console_y2, mb_left)){
-		global.console_select = false;
+		global.console_select = false;	
 	}
 	#endregion
 	
@@ -60,6 +60,8 @@ if(global.tab){
 	var _console_textbox_w = _console_textbox_x2 - _console_textbox_x1;
 	
 	var _console_n_lines = floor(((_console_y2 - _console_y1) - (_margin * 4))/_str_h);
+	
+	var _response = "";
 	#endregion
 	
 	#region console text
@@ -74,7 +76,7 @@ if(global.tab){
 			n_commands++;
 			n_console_lines++;
 			
-			index_command = n_command;
+			index_selected_command = n_commands;
 			
 			keyboard_string = "";
 			
@@ -82,29 +84,36 @@ if(global.tab){
 				offset++;
 			}
 			
-			args_command = string_split_ext(actual_command, [".", "(", ")", "="], true);
+			args_command = string_split_ext(actual_command, [".", "(", ")", "=", ","], true);
 			
-			switch args_command[0]{
-				case "obj_player":
-					switch args_command[1]{
-						case "state":
-								switch args_command[2]{
-									case "função":
-											response = "atribuir novo estado de máquina";
-										break;
-									default:
-										response = "comando não encontrado. tente novamente.";
-								}
-							break;
-						default:
-							response = "comando não encontrado. tente novamente.";
-					}
-					break;
-				default:
-					response = "comando não encontrado. tente novamente.";
+			try{
+				switch args_command[0]{
+					case "obj_player":
+						switch args_command[1]{
+							case "state":
+									switch args_command[2]{
+										case "função":
+												_response = "atribuir novo estado de máquina";
+											break;
+										default:
+											_response = "comando não encontrado. tente novamente.";
+									}
+								break;
+							default:
+								_response = "comando não encontrado. tente novamente.";
+						}
+						break;
+					case "spawn":
+						//_response = instance_create_layer(real(args_action[1]),real(args_action[2]),"Instances_1",toelement(args_action[3]));
+						break;
+					default:
+						_response = "comando não encontrado. tente novamente.";
+				}
+			}catch(_response){
+				_response = "comando não encontrado. tente novamente.";
 			}
 			
-			console_lines[n_console_lines] = response;
+			console_lines[n_console_lines] = _response;
 			n_console_lines++;
 					
 			if(n_console_lines > _console_n_lines){
@@ -129,7 +138,7 @@ if(global.tab){
 		
 		//scrollar o console
 		if(n_console_lines > _console_n_lines){
-			if(mouse_wheel_up() && offset + _console_n_lines - 1 > _console_n_lines){
+			if(mouse_wheel_up() && offset + _console_n_lines - 1 >= _console_n_lines){
 				offset--;
 			}else if(mouse_wheel_down() && offset + _console_n_lines + 1 <= n_console_lines){
 				offset++;
@@ -137,14 +146,17 @@ if(global.tab){
 		}
 		
 		//repetir comandos dados anteriormente
-		if(n_command > 0 && keyboard_check_released(vk_down) && index_command + 1 < n_command){
-			index_command++;
-			keyboard_string = commands[index_command];
-		}else if(n_command > 0 && keyboard_check_released(vk_up) && index_command - 1 > -1){
-			index_command--;
-			keyboard_string = commands[index_command];
+		if(n_commands > 0 && keyboard_check_released(vk_down) && index_selected_command + 1 < n_commands){
+			index_selected_command++;
+			show_debug_message(index_selected_command);
+			keyboard_string = commands[index_selected_command];
+		}else if(n_commands > 0 && keyboard_check_released(vk_up) && index_selected_command - 1 > -1){
+			index_selected_command--;
+			show_debug_message(index_selected_command);
+			keyboard_string = commands[index_selected_command];
 		}
 	}
+	
 	
 	//exibição de linhas anteriores do console
 	if(n_console_lines <= _console_n_lines){
@@ -156,17 +168,6 @@ if(global.tab){
 			draw_text(_console_textbox_x1, _console_textbox_y1 + _str_h * _i, console_lines[_i + offset]);
 		}
 	}
-	#endregion
-	
-	#region ação em função do comando que esta sendo passado
-	//if(keyboard_string != ""){
-	//	args_action = string_split_ext(keyboard_string, [".", "(", ")", "="], true);
-	//	var _action = search_for_valid_command(args_action, arr_commands);
-		
-	//	if(){
-			
-	//	}
-	//}
 	#endregion
 }
 n++;

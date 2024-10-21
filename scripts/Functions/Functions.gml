@@ -78,21 +78,47 @@ function surname_by_type(_type){
 	}
 }
 
-//function search_for_valid_command(_args_arr, _commands_list){
-//	if(!is_array(_args_arr) || !is_array(_commands_list)){
-//		return 0;
-//	}
+function search_for_valid_command(_args_arr, _commands_list){
+	if(!is_array(_args_arr) || !is_array(_commands_list)){
+		return noone;
+	}
 	
-//	var _i = 0;
-//	var _j = 0;
+	var _i = 0;
+	var _j = 0;
+	var _return = [];
 	
-//	while(_j < array_length(_commands_list)){
-//		for(_i = array_length(_args_arr) - 1; _i >= 0; _i--){
-//			if(_commands_list[_j] == _args_arr[_i]){
-//				return _args_arr[_i];
-//			}
-//		}
-//		_j++;
-//	}
-//	return 0;
-//}
+	while(_j < array_length(_commands_list)){
+		for(_i = array_length(_args_arr) - 1; _i >= 0; _i--){
+			if(_commands_list[_j] == _args_arr[_i]){
+				_return = [_args_arr[_i],_i];
+				return _return;
+			}
+		}
+		_j++;
+	}
+	return noone;
+}
+
+function draw_selection_area(_x1 = 0, _y1 = _x1, _x2 = _x1, _y2 = _x1){
+	var _hw = 1;
+	
+	//superior
+	draw_line_width_color(_x1 - _hw, _y1, _x2 + _hw, _y1, 2, c_white, c_white);
+	//direita											  
+	draw_line_width_color(_x2, _y1 - _hw, _x2, _y2 + _hw, 2, c_white, c_white);
+	//inferior											 
+	draw_line_width_color(_x1 - _hw, _y2, _x2 + _hw, _y2, 2, c_white, c_white);
+	//esquera											  
+	draw_line_width_color(_x1, _y1 - _hw, _x1, _y2 + _hw, 2, c_white, c_white);
+}
+
+function draw_selected_point(_x, _y){
+	draw_circle(_x, _y, 4, 0);
+}
+
+function toelement(_element){
+	switch _element{
+		case "obj_block": return obj_block;
+		case "obj_bard_mage": return obj_bard_mage;
+	}
+}
