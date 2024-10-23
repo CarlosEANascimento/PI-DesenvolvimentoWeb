@@ -1,14 +1,15 @@
 mage = {
-	type: 0,
-	name: "name",
-	surname: "surname",
-	sprite: spr_bard_mage,
-	spell_sprite: spr_bard_mage_spell,
-	spell: obj_spells,
-	damage: 0,
-	range: 0,
-	spell_speed: 0,
-	action_frame: 0,
+	kind: 0,
+	name_surname: "",
+	
+	spell_object: obj_spells,
+	spell_speed: 0, 
+	spell_damage: 0,
+	spell_range: 0,
+	
+	action_frame: 0.0,
 	spell_source_x: 0,
-	spell_source_y: 0
-};
+	spell_source_y: 0,
+	
+	status: 0
+}

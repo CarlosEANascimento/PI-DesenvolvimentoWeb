@@ -118,8 +118,8 @@ function draw_selected_point(_x, _y){
 
 function toelement(_element){
 	switch _element{
-		case "obj_block": return obj_block;
-		case "obj_bard_mage": return obj_bard_mage;
-		case "target": return obj_target;
+		case "bloco": return obj_block;
+		case "bardo": return obj_bard_mage;
+		case "alvo": return obj_target;
 	}
 }

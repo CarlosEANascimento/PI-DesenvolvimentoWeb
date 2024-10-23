@@ -1,16 +1,13 @@
 event_inherited();
 
-mage = {
-	type: 0,
-	name: random_name(),
-	surname: surname_by_type(0),
-	sprite: spr_bard_mage,
-	spell_sprite: spr_bard_mage_spell,
-	speel: obj_bard_mage_spell,
-	damage: 2,
-	range: 320,
-	speed_speed: 3,
-	action_frame: 2,
-	speel_source_x: 0,
-	speel_source_y: 4
-};
+
+mage.kind = 0;
+mage.name_surname = random_name() + " " + surname_by_type(mage.type);
+mage.spell_object = obj_bard_mage_spell;
+mage.spell_speed = 2;
+mage.spell_damage = 2;
+mage.spell_range = 320;
+mage.action_frame = 2.0;
+mage.spell_source_x = 1;
+mage.spell_source_y = 4;
+mage.status = 0;
