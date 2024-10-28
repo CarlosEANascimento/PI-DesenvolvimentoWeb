@@ -119,7 +119,31 @@ function draw_selected_point(_x, _y){
 function toelement(_element){
 	switch _element{
 		case "bloco": return obj_block;
-		case "bardo": return obj_bard_mage;
+		case "bardo": return obj_mage_bard;
 		case "alvo": return obj_target;
+		case "monstro": return obj_blinded_grimlock;
+		case "wall": return obj_walls;
 	}
+}
+
+function array_find_element(_arr, _elmnt){
+	if(!is_array(_arr)){
+		return -1;
+	}
+	
+	var _arr_length = array_length(_arr);
+	
+	if(_arr_length == 0){
+		return - 1;
+	}
+	
+	var _i;
+	
+	for(_i = 0; _i < _arr_length; _i++){
+		if(_arr[_i] == _elmnt){
+			return _i;
+		}
+	}
+	
+	return -1;
 }

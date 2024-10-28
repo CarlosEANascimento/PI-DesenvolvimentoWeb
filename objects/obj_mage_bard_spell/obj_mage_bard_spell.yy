@@ -1,17 +1,21 @@
 {
   "$GMObject":"",
-  "%Name":"obj_target",
+  "%Name":"obj_mage_bard_spell",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_target",
+  "name":"obj_mage_bard_spell",
   "overriddenProperties":[],
   "parent":{
-    "name":"Enemies",
-    "path":"folders/Objetos/Enemies.yy",
+    "name":"Spells",
+    "path":"folders/Objetos/Spells.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_spells",
+    "path":"objects/obj_spells/obj_spells.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -30,8 +34,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_target",
-    "path":"sprites/spr_target/spr_target.yy",
+    "name":"spr_bard_mage_spell",
+    "path":"sprites/spr_bard_mage_spell/spr_bard_mage_spell.yy",
   },
   "spriteMaskId":null,
   "visible":true,

@@ -1,1 +1,1 @@
-/// @description colldown para virar
+/// @description Colldown alternar lado

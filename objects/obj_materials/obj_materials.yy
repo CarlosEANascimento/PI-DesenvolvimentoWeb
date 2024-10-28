@@ -1,13 +1,15 @@
 {
   "$GMObject":"",
-  "%Name":"obj_enemy",
-  "eventList":[],
+  "%Name":"obj_materials",
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
-  "name":"obj_enemy",
+  "name":"obj_materials",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objetos",
-    "path":"folders/Objetos.yy",
+    "name":"Materials",
+    "path":"folders/Objetos/Materials.yy",
   },
   "parentObjectId":null,
   "persistent":false,

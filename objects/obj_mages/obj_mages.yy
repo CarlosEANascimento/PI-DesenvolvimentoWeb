@@ -11,8 +11,8 @@
   "name":"obj_mages",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objetos",
-    "path":"folders/Objetos.yy",
+    "name":"Mages",
+    "path":"folders/Objetos/Mages.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -4,6 +4,7 @@ if(global.tab){
 		args_action = string_split_ext(keyboard_string, [".", "(", ")", "=", ","], true);
 		var _action, _index_action;
 		var _x, _y;
+		var _error;
 		var _valid_command = search_for_valid_command(args_action, arr_commands);
 		
 		if(_valid_command != noone){
@@ -14,8 +15,16 @@ if(global.tab){
 				case "spawn":
 					draw_cartesian_plan();
 					
-					_x = (_index_action + 1 < array_length(args_action))? real(args_action[_index_action + 1]) : floor(obj_player.x/16);
-					_y = (_index_action + 2 < array_length(args_action))? real(args_action[_index_action + 2]) : floor(obj_player.bbox_top/16);
+					//_x = (_index_action + 1 < array_length(args_action))? real(args_action[_index_action + 1]) : floor(obj_player.x/16);
+					//_y = (_index_action + 2 < array_length(args_action))? real(args_action[_index_action + 2]) : floor(obj_player.bbox_top/16);
+					
+					try{
+						_x = real(args_action[_index_action + 1]);
+						_y = real(args_action[_index_action + 2]);
+					}catch(_error){
+						_x = floor(obj_player.x/16);
+						_y = floor(obj_player.bbox_top/16);
+					}
 					
 					draw_circle(_x * 16, _y * 16, 1, 0);
 					break;

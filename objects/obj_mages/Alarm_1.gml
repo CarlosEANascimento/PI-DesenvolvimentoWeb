@@ -1,1 +1,1 @@
-/// @description efeitos de status
+/// @description Temporizador de efeitos de status

@@ -1,1 +1,0 @@
-/// @description Timer - anormalidade de status

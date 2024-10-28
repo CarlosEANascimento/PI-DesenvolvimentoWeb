@@ -1,20 +1,21 @@
 {
   "$GMObject":"",
-  "%Name":"obj_bard_mage_spell",
+  "%Name":"obj_blinded_grimlock",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":1,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_bard_mage_spell",
+  "name":"obj_blinded_grimlock",
   "overriddenProperties":[],
   "parent":{
-    "name":"Spells",
-    "path":"folders/Objetos/Spells.yy",
+    "name":"Enemies",
+    "path":"folders/Objetos/Enemies.yy",
   },
   "parentObjectId":{
-    "name":"obj_spells",
-    "path":"objects/obj_spells/obj_spells.yy",
+    "name":"obj_enemies",
+    "path":"objects/obj_enemies/obj_enemies.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
@@ -34,8 +35,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_bard_mage_spell",
-    "path":"sprites/spr_bard_mage_spell/spr_bard_mage_spell.yy",
+    "name":"spr_blinded_grimlock",
+    "path":"sprites/spr_blinded_grimlock/spr_blinded_grimlock.yy",
   },
   "spriteMaskId":null,
   "visible":true,
