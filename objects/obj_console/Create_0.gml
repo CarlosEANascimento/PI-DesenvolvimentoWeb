@@ -19,6 +19,18 @@ arr_commands = [
 	"spawn"
 ];
 
+side_tab_tips = [
+	["Function: spawn(xpos,ypos,object)","outro comando","a","b","c","d","e","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d"],
+	["Função spawn", "spawn(xpos,ypos,object)", "return: instance id"]		//função spawn
+];
+
+function side_tab_tips_index_correspondant(_command){
+	switch _command{
+		case "spawn": return 1;
+		default: return 0;
+	}
+}
+
 function draw_cartesian_plan(){
 	depth = layer_get_depth(obj_player.layer) + 1;
 	

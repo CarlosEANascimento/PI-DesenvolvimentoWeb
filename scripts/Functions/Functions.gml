@@ -147,3 +147,24 @@ function array_find_element(_arr, _elmnt){
 	
 	return -1;
 }
+
+function draw_side_tab_tips(_arr, _xpos_in, _ypos_in, _text_w, _str_h, _lines_limitation, _offset = 0){
+	var _i,_l;
+	
+	if(!is_array(_arr)){
+		draw_text_ext(_xpos_in, _ypos_in, "Nenhum comando encontrado",0,_text_w)
+	}else{
+		_l = (array_length(_arr) < _offset + _lines_limitation)? array_length(_arr) : _offset + _lines_limitation ;
+		
+		for(_i = _offset; _i < _l; _i++){
+			draw_text_ext(_xpos_in, _ypos_in + _str_h * _i, _arr[_i],0,_text_w);
+		}
+	}
+}
+
+function mouse_in_gui_area(_x1, _x2, _y1, _y2){
+	if(device_mouse_x_to_gui(0) > _x1 && device_mouse_x_to_gui(0) < _x2 && device_mouse_y_to_gui(0) > _y1 && device_mouse_y_to_gui(0) < _y2){
+		return 1;
+	}
+	return 0;
+}

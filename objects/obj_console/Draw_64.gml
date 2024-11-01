@@ -8,18 +8,27 @@ if(global.tab){
 	var _font = fnt_consolas;
 	
 	var _i = 0;
+	
+	var _error;
 	#endregion
 	
-	#region console & side tab variables
-	var _side_tab_w = (_gui_w/16)*2;
-	var _side_tab_h = _gui_h;
+	#region console & side tab & quests variables
+	var _side_tab_w = (_gui_w/16)*4;
+	var _side_tab_h = _gui_h/2;
+	var _quest_tab_w = _side_tab_w;
+	var _quest_tab_h = _gui_h/2;
 	var _console_w = _gui_w - _side_tab_w;
 	var _console_h = _gui_h/4;
 
 	var _side_tab_x1 = _margin;
 	var _side_tab_y1 = _margin;
 	var _side_tab_x2 = _side_tab_x1 + _side_tab_w - (_margin * 1.5);
-	var _side_tab_y2 = _side_tab_y1 + _side_tab_h - (_margin * 2);
+	var _side_tab_y2 = _side_tab_y1 + _side_tab_h - (_margin);
+
+	var _quest_tab_x1 = _margin;
+	var _quest_tab_y1 = _side_tab_y2 + (_margin);
+	var _quest_tab_x2 = _quest_tab_x1 + _quest_tab_w - (_margin * 1.5);
+	var _quest_tab_y2 = _quest_tab_y1 + _quest_tab_h - (_margin * 2);
 
 	var _console_x1 = _side_tab_w + (_margin * 0.5);
 	var _console_y1 = _gui_h - _console_h + _margin;
@@ -27,10 +36,13 @@ if(global.tab){
 	var _console_y2 = _console_y1 + _console_h - (_margin * 2);
 	#endregion
 	
-	#region console & side tab drawing
+	#region console & side tab & questss drawing
 	//side tab
 	draw_rectangle_color(_side_tab_x1, _side_tab_y1, _side_tab_x2, _side_tab_y2, c_black, c_black, c_black, c_black, 0);
 	draw_rectangle_color_width(_side_tab_x1, _side_tab_y1, _side_tab_x2, _side_tab_y2, c_white, 2);
+	
+	draw_rectangle_color(_quest_tab_x1, _quest_tab_y1, _quest_tab_x2, _quest_tab_y2, c_black, c_black, c_black, c_black, 0);
+	draw_rectangle_color_width(_quest_tab_x1, _quest_tab_y1, _quest_tab_x2, _quest_tab_y2, c_white, 2);
 	
 	//console
 	draw_rectangle_color(_console_x1, _console_y1, _console_x2, _console_y2, c_black, c_black, c_black, c_black, 0);
@@ -138,7 +150,7 @@ if(global.tab){
 		}
 		
 		//scrollar o console
-		if(n_console_lines > _console_n_lines){
+		if(n_console_lines > _console_n_lines && mouse_in_gui_area(_console_textbox_x1, _console_textbox_x2, _console_textbox_y1, _console_textbox_y2) == 1){
 			if(mouse_wheel_up() && offset + _console_n_lines - 1 >= _console_n_lines){
 				offset--;
 			}else if(mouse_wheel_down() && offset + _console_n_lines + 1 <= n_console_lines){
@@ -168,6 +180,38 @@ if(global.tab){
 		for(_i = 0; _i < _console_n_lines; _i++){
 			draw_text(_console_textbox_x1, _console_textbox_y1 + _str_h * _i, console_lines[_i + offset]);
 		}
+	}
+	#endregion
+	
+	#region sidetab text box variables
+	var _side_tab_textbox_x1 = _side_tab_x1 + _margin * 1;
+	var _side_tab_textbox_x2 = _side_tab_x2 - _margin * 1;
+	var _side_tab_textbox_y1 = _side_tab_y1 + _margin * 1.5;
+	var _side_tab_textbox_y2 = _side_tab_y2 - _margin * 1.5;
+	
+	var _side_tab_n_lines = floor(((_side_tab_y2 - _side_tab_y1) - (_margin * 4))/_str_h);
+	for(_i = 0; _i <= _side_tab_n_lines + 1; _i++){
+		draw_line(_side_tab_textbox_x1, _side_tab_textbox_y1 + _str_h * _i, _side_tab_textbox_x2, _side_tab_textbox_y1 + _str_h * _i);
+	}
+	#endregion
+	
+	#region side tab text dicas de comandos
+	var _args_action, _action, _error, _valid_command;
+	
+	if(keyboard_string != ""){
+		_args_action = string_split_ext(keyboard_string, [".", "(", ")", "=", ","], true);
+		_valid_command = search_for_valid_command(_args_action, arr_commands);
+		
+		//if(_valid_command != noone){
+			try{
+				_action = _valid_command[0];
+			}catch(_error){
+				_action = -1;
+			}
+			draw_side_tab_tips(side_tab_tips[side_tab_tips_index_correspondant(_action)],_side_tab_textbox_x1, _side_tab_textbox_y1, _side_tab_textbox_x2 - _side_tab_textbox_x1,_str_h);
+		//}else{
+			//draw_side_tab_tips(side_tab_tips[side_tab_tips_index_correspondant(_action)],_side_tab_textbox_x1, _side_tab_textbox_y1, _side_tab_textbox_x2 - _side_tab_textbox_x1,_str_h);
+		//}
 	}
 	#endregion
 }
