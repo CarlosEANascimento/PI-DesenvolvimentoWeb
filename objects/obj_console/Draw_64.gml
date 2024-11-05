@@ -36,6 +36,17 @@ if(global.tab){
 	var _console_y2 = _console_y1 + _console_h - (_margin * 2);
 	#endregion
 	
+	#region global settings
+	if(mouse_check_button_released_in_gui_area(_console_x1, _console_y1, _console_x2, _console_y2, mb_left)  || mouse_check_button_released_in_gui_area(_side_tab_x1, _side_tab_y1, _side_tab_x2, _side_tab_y2, mb_left)){
+		global.console_select = true;
+		keyboard_string = "";
+	}
+	
+	if(mouse_check_button_released_out_gui_area(_console_x1, _console_y1, _console_x2, _console_y2, mb_left) && mouse_check_button_released_out_gui_area(_side_tab_x1, _side_tab_y1, _side_tab_x2, _side_tab_y2, mb_left)){
+		global.console_select = false;	
+	}
+	#endregion
+	
 	#region console & side tab & questss drawing
 	//side tab
 	draw_rectangle_color(_side_tab_x1, _side_tab_y1, _side_tab_x2, _side_tab_y2, c_black, c_black, c_black, c_black, 0);
@@ -48,17 +59,6 @@ if(global.tab){
 	draw_rectangle_color(_console_x1, _console_y1, _console_x2, _console_y2, c_black, c_black, c_black, c_black, 0);
 	draw_rectangle_color_width(_console_x1, _console_y1, _console_x2, _console_y2, c_white, 2);
 	draw_rectangle_color_width(_console_x1 + _margin/2, _console_y1 + _margin/2, _console_x2 - _margin/2, _console_y2 - _margin/2, c_white, 1);
-	#endregion
-	
-	#region global settings
-	if(mouse_check_button_released_in_gui_area(_console_x1, _console_y1, _console_x2, _console_y2, mb_left)){
-		global.console_select = true;
-		keyboard_string = "";
-	}
-	
-	if(mouse_check_button_released_out_gui_area(_console_x1, _console_y1, _console_x2, _console_y2, mb_left)){
-		global.console_select = false;	
-	}
 	#endregion
 	
 	#region console text box variables
@@ -93,7 +93,7 @@ if(global.tab){
 			keyboard_string = "";
 			
 			if(n_console_lines > _console_n_lines){
-				offset++;
+				console_offset++;
 			}
 			
 			args_command = string_split_ext(actual_command, [".", "(", ")", "=", ","], true);
@@ -130,7 +130,7 @@ if(global.tab){
 			n_console_lines++;
 					
 			if(n_console_lines > _console_n_lines){
-				offset++;
+				console_offset++;
 			}
 		}
 		
@@ -151,10 +151,10 @@ if(global.tab){
 		
 		//scrollar o console
 		if(n_console_lines > _console_n_lines && mouse_in_gui_area(_console_textbox_x1, _console_textbox_x2, _console_textbox_y1, _console_textbox_y2) == 1){
-			if(mouse_wheel_up() && offset + _console_n_lines - 1 >= _console_n_lines){
-				offset--;
-			}else if(mouse_wheel_down() && offset + _console_n_lines + 1 <= n_console_lines){
-				offset++;
+			if(mouse_wheel_up() && console_offset + _console_n_lines - 1 >= _console_n_lines){
+				console_offset--;
+			}else if(mouse_wheel_down() && console_offset + _console_n_lines + 1 <= n_console_lines){
+				console_offset++;
 			}
 		}
 		
@@ -178,7 +178,7 @@ if(global.tab){
 		}
 	}else if(n_console_lines > _console_n_lines){
 		for(_i = 0; _i < _console_n_lines; _i++){
-			draw_text(_console_textbox_x1, _console_textbox_y1 + _str_h * _i, console_lines[_i + offset]);
+			draw_text(_console_textbox_x1, _console_textbox_y1 + _str_h * _i, console_lines[_i + console_offset]);
 		}
 	}
 	#endregion
@@ -189,29 +189,45 @@ if(global.tab){
 	var _side_tab_textbox_y1 = _side_tab_y1 + _margin * 1.5;
 	var _side_tab_textbox_y2 = _side_tab_y2 - _margin * 1.5;
 	
-	var _side_tab_n_lines = floor(((_side_tab_y2 - _side_tab_y1) - (_margin * 4))/_str_h);
-	for(_i = 0; _i <= _side_tab_n_lines + 1; _i++){
-		draw_line(_side_tab_textbox_x1, _side_tab_textbox_y1 + _str_h * _i, _side_tab_textbox_x2, _side_tab_textbox_y1 + _str_h * _i);
-	}
+	var _side_tab_n_lines = ceil(((_side_tab_y2 - _side_tab_y1) - (_margin * 4))/_str_h);
 	#endregion
 	
 	#region side tab text dicas de comandos
-	var _args_action, _action, _error, _valid_command;
+	var _args_action, _action, _valid_command, _n_side_tab_tips_lines;
 	
-	if(keyboard_string != ""){
+	if(global.console_select){
 		_args_action = string_split_ext(keyboard_string, [".", "(", ")", "=", ","], true);
 		_valid_command = search_for_valid_command(_args_action, arr_commands);
-		
-		//if(_valid_command != noone){
-			try{
-				_action = _valid_command[0];
-			}catch(_error){
-				_action = -1;
+	
+		try{
+			if(array_length(side_tab_tips[side_tab_tips_index_correspondant(_action)]) > _side_tab_n_lines && mouse_in_gui_area(_side_tab_textbox_x1, _side_tab_textbox_x2, _side_tab_textbox_y1, _side_tab_textbox_y2) == 1){
+				if(mouse_wheel_up() && side_tab_offset + _side_tab_n_lines - 1 >= _side_tab_n_lines){
+					side_tab_offset--;
+				}else if(mouse_wheel_down() && side_tab_offset + _side_tab_n_lines + 1 <= array_length(side_tab_tips[side_tab_tips_index_correspondant(_action)])){
+					side_tab_offset++;
+				}
 			}
-			draw_side_tab_tips(side_tab_tips[side_tab_tips_index_correspondant(_action)],_side_tab_textbox_x1, _side_tab_textbox_y1, _side_tab_textbox_x2 - _side_tab_textbox_x1,_str_h);
-		//}else{
-			//draw_side_tab_tips(side_tab_tips[side_tab_tips_index_correspondant(_action)],_side_tab_textbox_x1, _side_tab_textbox_y1, _side_tab_textbox_x2 - _side_tab_textbox_x1,_str_h);
-		//}
+		}catch(_error){
+			show_debug_message(_error);
+		}
+	}
+	
+	try{
+		_action = _valid_command[0];
+	}catch(_error){
+		_action = -1;
+	}
+	
+	_n_side_tab_tips_lines = array_length(side_tab_tips[side_tab_tips_index_correspondant(_action)]);
+	
+	if(_n_side_tab_tips_lines <= _side_tab_n_lines){
+		for(_i = 0; _i < _n_side_tab_tips_lines; _i++){
+			draw_text(_side_tab_textbox_x1, _side_tab_textbox_y1 + _str_h * _i, side_tab_tips[side_tab_tips_index_correspondant(_action),_i]);
+		}
+	}else if(_n_side_tab_tips_lines > _side_tab_n_lines){
+		for(_i = 0; _i < _side_tab_n_lines; _i++){
+			draw_text(_side_tab_textbox_x1, _side_tab_textbox_y1 + _str_h * _i, side_tab_tips[side_tab_tips_index_correspondant(_action),_i + side_tab_offset]);
+		}
 	}
 	#endregion
 }

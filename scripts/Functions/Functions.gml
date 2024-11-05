@@ -150,14 +150,16 @@ function array_find_element(_arr, _elmnt){
 
 function draw_side_tab_tips(_arr, _xpos_in, _ypos_in, _text_w, _str_h, _lines_limitation, _offset = 0){
 	var _i,_l;
-	
 	if(!is_array(_arr)){
 		draw_text_ext(_xpos_in, _ypos_in, "Nenhum comando encontrado",0,_text_w)
 	}else{
-		_l = (array_length(_arr) < _offset + _lines_limitation)? array_length(_arr) : _offset + _lines_limitation ;
+		_l = (array_length(_arr) < _offset + _lines_limitation)? array_length(_arr) : _lines_limitation - 1 ;
+		draw_text(500,250,_l);
+		draw_text(500,260,array_length(_arr));
+		draw_text(500,270,string(_offset + _lines_limitation));
 		
-		for(_i = _offset; _i < _l; _i++){
-			draw_text_ext(_xpos_in, _ypos_in + _str_h * _i, _arr[_i],0,_text_w);
+		for(_i = 0; _i < _l; _i++){
+			draw_text_ext(_xpos_in, _ypos_in + _str_h * _i, _arr[_offset + _i],0,_text_w);
 		}
 	}
 }

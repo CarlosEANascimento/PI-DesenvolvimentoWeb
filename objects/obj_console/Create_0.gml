@@ -11,7 +11,8 @@ index_selected_command = 0;
 actual_command = "";
 args_command = [];
 args_action = [];
-offset = 0;
+console_offset = 0;
+side_tab_offset = 0;
 
 n = 0;
 
@@ -20,7 +21,7 @@ arr_commands = [
 ];
 
 side_tab_tips = [
-	["Function: spawn(xpos,ypos,object)","outro comando","a","b","c","d","e","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d"],
+	["Function: spawn(xpos,ypos,object)","outro comando","a","b","c","d","e","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d"],
 	["Função spawn", "spawn(xpos,ypos,object)", "return: instance id"]		//função spawn
 ];
 
