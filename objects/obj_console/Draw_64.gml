@@ -74,6 +74,8 @@ if(global.tab){
 	var _console_n_lines = floor(((_console_y2 - _console_y1) - (_margin * 4))/_str_h);
 	
 	var _response = "";
+	var _list = ds_list_create();
+	var _num;
 	#endregion
 	
 	#region console text
@@ -118,6 +120,20 @@ if(global.tab){
 					case "spawn":
 						_response = instance_create_layer(real(args_action[1])*16,real(args_action[2])*16,"Instances_1",toelement(args_action[3]));
 						_response.depth = 0 + instance_number(obj_walls);
+						break;
+					case "upgrade":
+						_num = collision_rectangle_list(args_command[1]*16,args_command[2]*16,args_command[3]*16,args_command[4]*16,obj_walls,0,1,_list,1);
+						
+						if(_num > 0){
+							for(_i = 0; _i < _num; _i++){
+								if(_list[| _i].level + 1 < 3){
+									_list[| _i].level++;
+								}
+							}
+							_response = string(_num) + " paredes foram melhoradas.";
+						}else{
+							_response = "Nenhuma parede encontrada.";
+						}
 						break;
 					default:
 						_response = "comando não encontrado. tente novamente.";

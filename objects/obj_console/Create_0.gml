@@ -17,17 +17,20 @@ side_tab_offset = 0;
 n = 0;
 
 arr_commands = [
-	"spawn"
+	"spawn",
+	"upgrade"
 ];
 
 side_tab_tips = [
-	["Function: spawn(xpos,ypos,object)","outro comando","a","b","c","d","e","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d"],
-	["Função spawn", "spawn(xpos,ypos,object)", "return: instance id"]		//função spawn
+	["Function: spawn(xpos,ypos,object)","Function: upgrade(x1,y1,x2,y2)"],
+	["Função spawn", "spawn(xpos,ypos,object)", "return: instance id"],		//função spawn
+	["Função upgrade","upgrade(x1,y1,x2,y2)","retrun: situation"]
 ];
 
 function side_tab_tips_index_correspondant(_command){
 	switch _command{
 		case "spawn": return 1;
+		case "upgrade": return 2;
 		default: return 0;
 	}
 }

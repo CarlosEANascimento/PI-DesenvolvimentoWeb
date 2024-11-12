@@ -1,4 +1,4 @@
-level = 1;
+level = 0;
 
 sprites_wall =		[[2,1] ,[15,1],[28,1]];
 sprites_h_juction = [[1,18],[8,18],[15,18]];

@@ -9,3 +9,7 @@ move_and_collide(_dx, _dy, obj_block, 4, 128, 0, 1, 1);
 if(enemy.vida <= 0){
 	instance_destroy();
 }
+
+if(y < obj_player.y){
+	depth = obj_player.depth - 1;
+}
