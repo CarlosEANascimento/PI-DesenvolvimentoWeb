@@ -15,4 +15,6 @@ spell = {
 
 first_frame = true;
 enemies = [];
-n_enemies = 0;
+n_enemies = 0; 
+
+alarm[0] = 600;

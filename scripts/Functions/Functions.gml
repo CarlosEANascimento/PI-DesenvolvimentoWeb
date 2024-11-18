@@ -120,6 +120,8 @@ function toelement(_element){
 	switch _element{
 		case "bloco": return obj_block;
 		case "bardo": return obj_mage_bard;
+		case "druida": return obj_mage_druid;
+		case "fogo": return obj_mage_pyromancer;
 		case "alvo": return obj_target;
 		case "monstro": return obj_blinded_grimlock;
 		case "wall": return obj_walls;
