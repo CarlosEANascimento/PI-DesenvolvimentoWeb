@@ -172,3 +172,12 @@ function mouse_in_gui_area(_x1, _x2, _y1, _y2){
 	}
 	return 0;
 }
+
+function search_mage_by_name(_name){
+	with(obj_mages){
+		if(id != other.id && mage.name_surname == _name){
+			return 1;
+		}
+	}
+	return 0;
+}

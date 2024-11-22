@@ -34,6 +34,9 @@ if(global.tab){
 						draw_selection_area(floor(obj_player.x/16)*16,floor(obj_player.bbox_top/16)*16,floor(obj_player.x/16)*16,floor(obj_player.bbox_top/16)*16);
 					}
 					break;
+				case "interact":
+					draw_mages_name();
+					break;
 				default:
 					empty();
 			}
