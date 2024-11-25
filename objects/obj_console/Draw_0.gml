@@ -1,4 +1,4 @@
-if(global.tab){
+if(global.tab && global.console_select){
 	#region ação em função do comando que está sendo passado
 	if(keyboard_string != ""){
 		args_action = string_split_ext(keyboard_string, [".", "(", ")", "=", ","], true);

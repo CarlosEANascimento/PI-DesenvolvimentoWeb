@@ -1,3 +1,5 @@
+depth = y * (-1);
+
 var _alvo, _spell_inst;
 
 if(mage.status != 0){
@@ -18,10 +20,10 @@ if(instance_exists(obj_enemies)){
 		_spell_inst = instance_create_depth(x + mage.spell_source_x * sign(image_xscale), y - mage.spell_source_y, depth - 1, mage.spell_object);
 		
 		_spell_inst.spell.target_x = _alvo.x;
-		_spell_inst.spell.target_y = _alvo.y;
+		_spell_inst.spell.target_y = _alvo.bbox_top;
 		
-		_spell_inst.spell.origin_x = x + mage.spell_source_x;
-		_spell_inst.spell.origin_y = y + mage.spell_source_y;
+		_spell_inst.spell.origin_x = (sign(image_xscale)*x) + mage.spell_source_x;
+		_spell_inst.spell.origin_y = y - mage.spell_source_y;
 		_spell_inst.spell.damage = mage.spell_damage;
 		_spell_inst.spell.spell_speed = mage.spell_speed;
 		_spell_inst.spell.hits = mage.spell_hits;

@@ -13,6 +13,8 @@ if(x < 0 || x > room_width || y < 0 || y > room_height){
 	instance_destroy();
 }
 
-if(instance_exists(obj_walls)){
-	depth = obj_walls.depth - 10;
+var _col = collision_rectangle(bbox_left, bbox_top - 8, bbox_right, bbox_bottom + 4, all, 0, 1);
+
+if(_col != noone){
+	depth = _col.depth - 10;
 }

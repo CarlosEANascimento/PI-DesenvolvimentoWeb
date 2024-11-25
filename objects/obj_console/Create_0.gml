@@ -94,6 +94,7 @@ function draw_mages_name(){
 		}
 	}
 	draw_set_halign(fa_left);
+	ds_list_destroy(_list);
 }
 
 function empty(){

@@ -1,3 +1,5 @@
+depth = y * (-1);
+
 material_type = 0;
 
 switch(material_type){

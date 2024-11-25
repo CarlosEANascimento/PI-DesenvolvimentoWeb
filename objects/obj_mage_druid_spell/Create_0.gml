@@ -5,6 +5,10 @@
 event_inherited();
 
 spell.destroy_func = function(){
+	if(sprite_index == spr_druid_mage_spell_p1){
+		image_index = 0;
+	}
+	
 	sprite_index = spr_druid_mage_spell_p2;
 	depth += 100;
 	image_angle = 0;

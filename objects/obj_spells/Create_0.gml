@@ -1,5 +1,11 @@
+depth = -100;
+
 destroy_fun = function(){
 	instance_destroy();
+}
+
+on_hit_fun = function(){
+	speed *= 1;
 }
 
 spell = {
@@ -10,7 +16,8 @@ spell = {
 	damage: 0,
 	spell_speed: 0,
 	hits: 0,
-	destroy_func: destroy_fun
+	destroy_func: destroy_fun,
+	on_hit_func: on_hit_fun
 }
 
 first_frame = true;

@@ -3,4 +3,6 @@ if(!global.console_select){
 	y_axis = keyboard_check(vk_down) - keyboard_check(vk_up);
 }
 
+depth = y * (-1);
+
 state();

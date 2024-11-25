@@ -70,11 +70,11 @@ function random_name(){
 function surname_by_type(_type){
 	switch _type{
 		case 0: return "Cantilena";
-		case 1: return "Raízes";
+		case 1: return "Raizes";
 		case 2: return "Sepulcro";
 		case 3: return "Cinzento";
 		case 4: return "Flecha-Ligeira";
-		case 5: return "Sortílego";
+		case 5: return "Sortilego";
 	}
 }
 
@@ -125,6 +125,10 @@ function toelement(_element){
 		case "alvo": return obj_target;
 		case "monstro": return obj_blinded_grimlock;
 		case "wall": return obj_walls;
+		case "necro": return obj_mage_necromancer;
+		case "ranger": return obj_mage_halfling_ranger;
+		case "mago": return obj_mage_deft_sorceress;
+		case "arvore": return obj_corrupted_treant;
 	}
 }
 
