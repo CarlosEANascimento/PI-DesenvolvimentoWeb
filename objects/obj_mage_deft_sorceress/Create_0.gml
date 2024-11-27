@@ -19,3 +19,11 @@ mage.name_surname	= random_name() + " " + surname_by_type(mage.kind);
 while(search_mage_by_name(mage.name_surname) == 1){
 	mage.name_surname	= random_name() + " " + surname_by_type(mage.kind);	
 }
+
+buff_itens = [8, 9];
+
+buff_speak =	[["Um ótimo ingrediente para poções", "Dá pra fazer um cajado magnifico com isso", "Ornamentos com isso são lindos"],
+				 ["Um ótimo ingrediente para poções", "Dá pra fazer um cajado magnifico com isso", "Ornamentos com isso são lindos"],
+				 ["Muito... obrigado?", "Caramba... que lindo", "O que é isso?"]];
+				 
+trivial_speak = ["A magia está em tudo ao nosso redor... mas poucos têm olhos para vê-la.", "Cuidado com o que deseja. Um feitiço mal-entendido pode ser mais perigoso que o silêncio.", "Minha força vem da sabedoria dos antigos, mas meu caminho é moldado pelo presente."];

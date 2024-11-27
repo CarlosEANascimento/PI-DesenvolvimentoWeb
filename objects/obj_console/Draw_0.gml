@@ -34,8 +34,12 @@ if(global.tab && global.console_select){
 						draw_selection_area(floor(obj_player.x/16)*16,floor(obj_player.bbox_top/16)*16,floor(obj_player.x/16)*16,floor(obj_player.bbox_top/16)*16);
 					}
 					break;
-				case "interact":
-					draw_mages_name();
+				case "interact_ls":
+					try{
+						draw_mages_name(args_action[_index_action + 1]);
+					}catch(_error){
+						draw_mages_name("");
+					}
 					break;
 				default:
 					empty();

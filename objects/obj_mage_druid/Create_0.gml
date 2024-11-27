@@ -19,3 +19,12 @@ mage.name_surname	= random_name() + " " + surname_by_type(mage.kind);
 while(search_mage_by_name(mage.name_surname) == 1){
 	mage.name_surname	= random_name() + " " + surname_by_type(mage.kind);	
 }
+
+buff_itens = [2, 6, 9];
+
+buff_speak =	[["Quando purificado, é possível fazer maravilhas com isso"],
+				 ["Se purificar é um ótimo ingrediente para poções e incensos"],
+				 ["Ah, como você sabia que eu queria um desse?"],
+				 ["Caramba... a terra vai amar", "Pelo menos não faz mal as plantas..."]];
+				 
+trivial_speak = ["A floresta fala, se souber ouvir. Cada folha sussurra um segredo antigo.", "A força de uma árvore não está apenas em seus galhos, mas nas raízes que ninguém vê.", "O equilíbrio é frágil como o orvalho ao amanhecer. Quebrá-lo tem um preço."]

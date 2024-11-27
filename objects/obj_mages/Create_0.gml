@@ -11,3 +11,9 @@ mage = {
 	spell_source_y	: 0					,
 	status: 0													
 };
+
+hired = false;
+interactions = "por nn eu viro seu subordinado (0), ou podemos só conversar (1)."
+buff_itens = [];
+buff_speak = [];
+trivial_speak = [];

@@ -19,3 +19,12 @@ mage.name_surname	= random_name() + " " + surname_by_type(mage.kind);
 while(search_mage_by_name(mage.name_surname) == 1){
 	mage.name_surname	= random_name() + " " + surname_by_type(mage.kind);	
 }
+
+buff_itens = [0, 6, 9];
+
+buff_speak =	[["Dê a moeda pro seu bruxo", "Sempre apoiando seu artista independente", "Aí sim chefia"],
+				 ["Não digo pra que vou usar isso...", "O que é isso?", "Meu primo ama isso... ele por acaso é bardo também"],
+				 ["A madeira disso da um ótimo instrumento"],
+				 ["obrigado...?","Entre isso e nada eu quero dois nada","Vlw chefia, bom saber o que eu sou pra voce"]];
+				 
+trivial_speak = ["E aí chefia, qual a boa de hoje?", "Fico feliz com pouco, 1 vinho é tudo que eu preciso", "Saudades dos meus tempos de andança... vinho, mulher e música"];

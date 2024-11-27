@@ -19,21 +19,24 @@ n = 0;
 arr_commands = [
 	"spawn",
 	"upgrade",
+	"interact_ls",
 	"interact"
 ];
 
 side_tab_tips = [
-	["Function: spawn(xpos,ypos,object)","Function: upgrade(x1,y1,x2,y2)","Function: interact(name)"],
+	["Function: spawn(xpos,ypos,object)","Function: upgrade(x1,y1,x2,y2)","Function: interact_ls(name)","Function: interact(name, interação)"],
 	["Função spawn", "spawn(xpos,ypos,object)", "return: id da instância"],		//função spawn
 	["Função upgrade","upgrade(x1,y1,x2,y2)","return: situação"],
-	["Função interact_with","interact(name)","return: resultado da interação","/interações possiveis"]
+	["Função interact_ls","interact_ls(name)","return: interações possiveis"],
+	["Função interact","interact(name, interação)","return: resultado"]
 ];
 
 function side_tab_tips_index_correspondant(_command){
 	switch _command{
 		case "spawn": return 1;
 		case "upgrade": return 2;
-		case "interact": return 3;
+		case "interact_ls": return 3;
+		case "interact": return 4;
 		default: return 0;
 	}
 }
@@ -81,18 +84,28 @@ function draw_cartesian_plan(){
 	draw_set_halign(fa_left);
 }
 
-function draw_mages_name(){
+function draw_mages_name(_name){
 	var _list = ds_list_create();
 	var _num = collision_ellipse_list(obj_player.x - 80, obj_player.bbox_top - 80, obj_player.x + 80, obj_player.bbox_top + 80, obj_mages, 0, 1, _list, 0);
 	var _i,_x,_y;
 	
 	draw_set_font(fnt_consolas);
 	draw_set_halign(fa_center);
+	var _error;
+	
+	
 	if(_num > 0){
 		for(_i = 0; _i < _num; _i++){
+			if(_list[| _i].mage.name_surname == _name){
+				draw_rectangle_color_width(_list[| _i].bbox_left, _list[| _i].bbox_bottom - 16, _list[| _i].bbox_right, _list[| _i].bbox_bottom, c_white, 1);
+				draw_set_color(c_green);
+			}
 			draw_text_transformed(_list[| _i].x, _list[| _i].y, _list[| _i].mage.name_surname,0.25,0.25,0);
+			draw_set_color(c_white);
 		}
 	}
+	
+	
 	draw_set_halign(fa_left);
 	ds_list_destroy(_list);
 }

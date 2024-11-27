@@ -2,6 +2,10 @@ depth = y * (-1);
 
 var _alvo, _spell_inst;
 
+if(hired){
+	interactions = "dependendo do que me der eu faço loucuras (0), ou podemos só conversar (1)."
+}
+
 if(mage.status != 0){
 	//fazer função para isso
 	//ideias:
@@ -9,7 +13,6 @@ if(mage.status != 0){
 	// crimson slaad, humonguos ettin -> diminui o dano
 	// fungal -> põe pra dormir
 	//só pode 1 status por vez e eles não podem se sobrepor
-	image_speed *= 0.1;
 }
 
 if(instance_exists(obj_enemies)){

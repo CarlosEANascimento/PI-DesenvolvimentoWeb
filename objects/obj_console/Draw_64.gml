@@ -76,6 +76,7 @@ if(global.tab){
 	var _response = "";
 	var _list = ds_list_create();
 	var _num;
+	var _var;								//variavel de uso genérico
 	#endregion
 	
 	#region console text
@@ -133,6 +134,26 @@ if(global.tab){
 							_response = string(_num) + " paredes foram melhoradas.";
 						}else{
 							_response = "Nenhuma parede encontrada.";
+						}
+						break;
+					case "interact_ls":
+						_var = search_mage_by_name_within_area(args_command[1],obj_player.x - 80, obj_player.bbox_top - 80, obj_player.x + 80, obj_player.bbox_top + 80);
+						if(_var != noone){
+							_response = args_command[1] + ": " + _var.interactions;
+						}else{
+							_response = args_command[1] + " não foi encontrada. tente outro nome.";
+						}
+						break;
+					case "interact":
+						_var = search_mage_by_name_within_area(args_command[1],obj_player.x - 80, obj_player.bbox_top - 80, obj_player.x + 80, obj_player.bbox_top + 80);
+						if(_var != noone){
+							if(real(args_command[2]) == 0){
+								_response = "não ta pronto";
+							}else if(real(args_command[2]) == 1){
+								_response = args_command[1] + ": " + _var.trivial_speak[round(random(2))];
+							}
+						}else{
+							_response = args_command[1] + " não foi encontrada. tente outro nome.";
 						}
 						break;
 					default:

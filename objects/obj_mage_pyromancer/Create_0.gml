@@ -19,3 +19,13 @@ mage.name_surname	= random_name() + " " + surname_by_type(mage.kind);
 while(search_mage_by_name(mage.name_surname) == 1){
 	mage.name_surname	= random_name() + " " + surname_by_type(mage.kind);	
 }
+
+buff_itens = [2, 5, 7, 9]
+
+buff_speak =	[["Isso aqui queima que é uma beleza"],
+				 ["Meu ingrediente favorito pra coquetel molotov"],
+				 ["Uuuhhh, é disso que eu to falando"],
+				 ["É, legalzinho, o que vale é a intenção"],
+				 ["Hora de libertar minha natureza piromaniaca"]];
+				 
+trivial_speak = ["Ah, fogo... a solução universal pra tudo.", "Quanto mais inflamável, mais divertido. Fato científico.", "Cuidado pra não chegar muito perto... ou chega, tanto faz."]

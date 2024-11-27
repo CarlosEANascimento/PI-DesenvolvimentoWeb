@@ -119,16 +119,25 @@ function draw_selected_point(_x, _y){
 function toelement(_element){
 	switch _element{
 		case "bloco": return obj_block;
+		case "wall": return obj_walls;
+		
 		case "bardo": return obj_mage_bard;
 		case "druida": return obj_mage_druid;
 		case "fogo": return obj_mage_pyromancer;
-		case "alvo": return obj_target;
-		case "monstro": return obj_blinded_grimlock;
-		case "wall": return obj_walls;
 		case "necro": return obj_mage_necromancer;
 		case "ranger": return obj_mage_halfling_ranger;
 		case "mago": return obj_mage_deft_sorceress;
-		case "arvore": return obj_corrupted_treant;
+		
+		case "alvo": return obj_target;
+		case "mons": return obj_blinded_grimlock;
+		case "cavre": return obj_corrupted_treant;
+		case "gavre": return obj_grizzled_treant;
+		case "slaad": return obj_crimson_slaad;
+		case "death": return obj_death_slime;
+		case "cogu": return obj_fungal_myconid;
+		case "wisp": return obj_glowing_wisp;
+		case "amongus": return obj_humongous_ettin;
+		case "ochre": return obj_ochre_jelly;
 	}
 }
 
@@ -184,4 +193,36 @@ function search_mage_by_name(_name){
 		}
 	}
 	return 0;
+}
+
+function get_mage_id_by_name(_name){
+	with(obj_mages){
+		if(mage.name_surname == _name){
+			return id;
+		}
+	}
+	return noone;
+}
+
+function search_mage_by_name_within_area(_name, _x1, _y1, _x2, _y2){
+	var _ls = ds_list_create();
+	var _nm = collision_ellipse_list(_x1, _y1, _x2, _y2, obj_mages, 0, 1, _ls, 0);
+	
+	if(_nm <= 0){
+		ds_list_destroy(_ls);
+		return noone;
+	}
+	
+	var _i, _ret;
+	
+	for(_i = 0; _i < _nm; _i++){
+		if(_ls[| _i].mage.name_surname == _name){
+			_ret = _ls[| _i].id;
+			ds_list_destroy(_ls);
+			return _ret;
+		}
+	}
+	
+	ds_list_destroy(_ls);
+	return noone;
 }

@@ -11,6 +11,10 @@ spell.on_hit_func = function(){
 	var _list = ds_list_create();
 	var _num = collision_ellipse_list(x - 86, y - 86, x + 86, y + 86, obj_enemies, 0, 1, _list, 1);
 	
+	if(_num <= 1){
+		return;
+	}
+	
 	var _inst = _list[| 0];
 	var _p_inst = _list[| 1];
 	

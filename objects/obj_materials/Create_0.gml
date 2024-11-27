@@ -2,6 +2,8 @@ depth = y * (-1);
 
 material_type = 0;
 
-switch(material_type){
-	case 0: sprite_index = spr_material_bone; break;
-}
+image_angle = random(300);
+vspeed = random_range(-10,10)/10;
+hspeed = random_range(-10,10)/10;
+
+ff = false;
