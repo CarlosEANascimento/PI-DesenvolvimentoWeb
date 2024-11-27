@@ -19,7 +19,11 @@ if(instance_exists(obj_enemies)){
 	_alvo = instance_nearest(mage.spell_source_x, mage.spell_source_y, obj_enemies);
 	image_xscale = (x < _alvo.x)? 1 : -1 ;
 	
-	if(distance_to_object(_alvo) < mage.spell_range && image_index == mage.action_frame){
+	if(image_index == mage.action_frame){
+		n_action_frames++;
+	}
+	
+	if(distance_to_object(_alvo) < mage.spell_range && n_action_frames == mage.n_action_cicles){
 		_spell_inst = instance_create_depth(x + mage.spell_source_x * sign(image_xscale), y - mage.spell_source_y, depth - 1, mage.spell_object);
 		
 		_spell_inst.spell.target_x = _alvo.x;
@@ -30,6 +34,8 @@ if(instance_exists(obj_enemies)){
 		_spell_inst.spell.damage = mage.spell_damage;
 		_spell_inst.spell.spell_speed = mage.spell_speed;
 		_spell_inst.spell.hits = mage.spell_hits;
+		
+		n_action_frames = 0;
 	}
 	
 }else if(alarm[0] <= 0){

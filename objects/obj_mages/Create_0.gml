@@ -9,8 +9,11 @@ mage = {
 	action_frame	: 0.0				,
 	spell_source_x	: 0					,
 	spell_source_y	: 0					,
+	n_action_cicles : 0					,
 	status: 0													
 };
+
+n_action_frames = 1;
 
 hired = false;
 interactions = "por nn eu viro seu subordinado (0), ou podemos só conversar (1)."

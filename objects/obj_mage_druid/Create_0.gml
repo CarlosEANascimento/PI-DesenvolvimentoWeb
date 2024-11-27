@@ -13,6 +13,7 @@ mage.spell_hits		= 1						;
 mage.action_frame	= 3.0					;
 mage.spell_source_x	= 5						;
 mage.spell_source_y	= 11					;
+mage.n_action_cicles = 2					;
 mage.status			= 0						;
 
 mage.name_surname	= random_name() + " " + surname_by_type(mage.kind);
