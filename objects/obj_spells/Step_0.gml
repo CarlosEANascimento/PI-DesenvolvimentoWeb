@@ -1,3 +1,5 @@
+depth = y * (-100);
+
 if(first_frame){
 	speed = spell.spell_speed;
 	direction = point_direction(spell.origin_x, spell.origin_y, spell.target_x, spell.target_y);

@@ -7,7 +7,4 @@ if(array_find_element(enemies, other) == -1){
 	if(spell.hits == 0){
 		image_index = 0;
 	}
-	show_debug_message("colidiu e deu dano");
-}else{
-	show_debug_message("só colidiu");
 }

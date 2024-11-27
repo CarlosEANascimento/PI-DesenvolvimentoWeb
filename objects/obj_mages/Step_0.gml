@@ -19,7 +19,7 @@ if(instance_exists(obj_enemies)){
 	_alvo = instance_nearest(mage.spell_source_x, mage.spell_source_y, obj_enemies);
 	image_xscale = (x < _alvo.x)? 1 : -1 ;
 	
-	if(distance_to_object(_alvo) < mage.spell_range  && image_index == mage.action_frame){
+	if(distance_to_object(_alvo) < mage.spell_range && image_index == mage.action_frame){
 		_spell_inst = instance_create_depth(x + mage.spell_source_x * sign(image_xscale), y - mage.spell_source_y, depth - 1, mage.spell_object);
 		
 		_spell_inst.spell.target_x = _alvo.x;
