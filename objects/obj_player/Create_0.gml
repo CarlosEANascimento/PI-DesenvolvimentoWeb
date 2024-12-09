@@ -2,7 +2,8 @@ x_axis = 0;
 y_axis = 0;
 
 sense = 1; //1 -> down, 0 -> side, -1 -> up
-inventory = [];
+//inventory = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+inventory = [20, 0, 0, 0, 0, 0, 0, 0, 0, 5];
 
 state_idle_walk = function(){
 	if(!place_meeting(x+x_axis, y, obj_block)){

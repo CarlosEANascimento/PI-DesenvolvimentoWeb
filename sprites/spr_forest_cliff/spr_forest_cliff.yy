@@ -20,6 +20,7 @@
   "HTile":false,
   "layers":[
     {"$GMImageLayer":"","%Name":"144c91c5-a6fb-43d1-a842-88c75fc2197f","blendMode":0,"displayName":"default","isLocked":false,"name":"144c91c5-a6fb-43d1-a842-88c75fc2197f","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"c6d89b8b-364f-4f07-9621-08c2c31ed775","blendMode":0,"displayName":"Layer 1","isLocked":false,"name":"c6d89b8b-364f-4f07-9621-08c2c31ed775","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"spr_forest_cliff",
   "nineSlice":null,

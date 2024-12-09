@@ -8,3 +8,7 @@ enemy.vida					= 12;
 enemy.drop_material_type	= 7;
 enemy.drop_rate				= 80;
 enemy.mov_speed				= 0.35;
+enemy.damage				= 1;
+enemy.cd_dano				= 80;
+
+alarm[0] = enemy.cd_dano;

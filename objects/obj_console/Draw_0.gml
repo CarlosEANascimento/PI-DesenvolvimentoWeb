@@ -23,7 +23,7 @@ if(global.tab && global.console_select){
 						_y = floor(obj_player.bbox_top/16);
 					}
 					
-					draw_circle(_x * 16, _y * 16, 1, 0);
+					draw_circle((_x * 16)+8, _y * 16, 1, 0);
 					break;
 				case "upgrade":
 					draw_cartesian_plan();
@@ -41,6 +41,37 @@ if(global.tab && global.console_select){
 						draw_mages_name("");
 					}
 					break;
+				case "build":
+					draw_cartesian_plan();
+					
+					try{
+						draw_selection_area(args_action[_index_action + 1] * 16,args_action[_index_action + 2] * 16,args_action[_index_action + 3] * 16,args_action[_index_action + 4] * 16);
+					}catch(_error){
+						draw_selection_area(floor(obj_player.x/16)*16,floor(obj_player.bbox_top/16)*16,floor(obj_player.x/16)*16,floor(obj_player.bbox_top/16)*16);
+					}
+					break;
+					
+				case "restore":
+					draw_cartesian_plan();
+					
+					try{
+						draw_selection_area(args_action[_index_action + 1] * 16,args_action[_index_action + 2] * 16,args_action[_index_action + 3] * 16,args_action[_index_action + 4] * 16);
+					}catch(_error){
+						draw_selection_area(floor(obj_player.x/16)*16,floor(obj_player.bbox_top/16)*16,floor(obj_player.x/16)*16,floor(obj_player.bbox_top/16)*16);
+					}
+					break;
+					
+				case "move":
+					draw_cartesian_plan();
+					
+					try{
+						draw_selection_area(args_action[_index_action + 1] * 16,args_action[_index_action + 2] * 16, (args_action[_index_action + 1] * 16) + 16, (args_action[_index_action + 2] * 16) + 16);
+						draw_selection_area(args_action[_index_action + 3] * 16,args_action[_index_action + 4] * 16, (args_action[_index_action + 3] * 16) + 16, (args_action[_index_action + 4] * 16) + 16);
+					}catch(_error){
+						draw_selection_area(floor(obj_player.x/16)*16,floor(obj_player.bbox_top/16)*16,floor(obj_player.x/16)*16,floor(obj_player.bbox_top/16)*16);
+					}
+					break;
+					
 				default:
 					empty();
 			}

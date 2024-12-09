@@ -32,49 +32,48 @@ function random_name(){
 	var _random = irandom(30);
 
 	switch (_random) {
-	    case 0:  return "Alencar";
-	    case 1:  return "Eurico";
-	    case 2:  return "Galdino";
+	    case 0:  return "Alan";
+	    case 1:  return "Erik";
+	    case 2:  return "Gabi";
 	    case 3:  return "Iara";
-	    case 4:  return "Nivaldo";
-	    case 5:  return "Aderbal";
-	    case 6:  return "Dalva";
-	    case 7:  return "Joares";
-	    case 8:  return "Ziraldo";
-	    case 9:  return "Marlon";
-	    case 10: return "Valéria";
+	    case 4:  return "Nilo";
+	    case 5:  return "Adel";
+	    case 6:  return "Dani";
+	    case 7:  return "João";
+	    case 8:  return "Zeca";
+	    case 9:  return "Marcos";
+	    case 10: return "Val";
 	    case 11: return "Ciro";
-	    case 12: return "Leôncio";
-	    case 13: return "Fabiano";
-	    case 14: return "Ivone";
-	    case 15: return "Olavo";
-	    case 16: return "Tatiana";
-	    case 17: return "Rogério";
-	    case 18: return "Clarice";
-	    case 19: return "Lauro";
-	    case 20: return "Vera";
-	    case 21: return "Carmem";
-	    case 22: return "Artur";
+	    case 12: return "Leo";
+	    case 13: return "Fabio";
+	    case 14: return "Ivo";
+	    case 15: return "Olaf";
+	    case 16: return "Tati";
+	    case 17: return "Roger";
+	    case 18: return "Clara";
+	    case 19: return "Léo";
+	    case 20: return "Vivi";
+	    case 21: return "Cami";
+	    case 22: return "Art";
 	    case 23: return "Selma";
-	    case 24: return "Rubens";
-	    case 25: return "Nádia";
-	    case 26: return "Osvaldo";
-	    case 27: return "Marilda";
-	    case 28: return "Edgar";
-	    case 29: return "Sônia";
+	    case 24: return "Rubi";
+	    case 25: return "Nana";
+	    case 26: return "Ozzy";
+	    case 27: return "Mari";
+	    case 28: return "Edi";
+	    case 29: return "Sofia";
 	    case 30: return "Flávio";
-	    default: return "Desconhecido";
 	}
 }
 
 function surname_by_type(_type){
-	switch _type{
-		case 0: return "Cantilena";
-		case 1: return "Raizes";
+	switch (_type) {
+		case 0: return "Canto";
+		case 1: return "Raiz";
 		case 2: return "Sepulcro";
-		case 3: return "Cinzento";
-		case 4: return "Flecha-Ligeira";
-		case 5: return "Sortilego";
+		case 3: return "Cinza";
+		case 4: return "Flecha";
+		case 5: return "Sorte";
 	}
 }
 
@@ -225,4 +224,24 @@ function search_mage_by_name_within_area(_name, _x1, _y1, _x2, _y2){
 	
 	ds_list_destroy(_ls);
 	return noone;
+}
+
+function material_name(_type){
+	switch _type{
+		case 0: return "Moeda";
+		case 1: return "Osso";
+		case 2: return "Madeira corrompida";
+		case 3: return "Presa";
+		case 4: return "Carne";
+		case 5: return "Geleia";
+		case 6: return "Cogumelo";
+		case 7: return "Geleia ocre";
+		case 8: return "Estilhaço";
+		case 9: return "Madeira";
+	}
+}
+
+function can_be_real(_str){
+	var _num = real(_str);
+    return (string(_num) == _str);
 }

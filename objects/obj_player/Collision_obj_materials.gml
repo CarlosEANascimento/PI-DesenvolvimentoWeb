@@ -1,2 +1,2 @@
 instance_destroy(other);
-inventory[other.material_type]++;
+inventory[other.material_type] += 1;

@@ -16,7 +16,9 @@ mage = {
 n_action_frames = 1;
 
 hired = false;
-interactions = "por nn eu viro seu subordinado (0), ou podemos só conversar (1)."
+interactions = "por 10 de ouro eu viro seu subordinado (0), ou podemos só conversar (1)."
 buff_itens = [];
 buff_speak = [];
 trivial_speak = [];
+
+position = [x,y];

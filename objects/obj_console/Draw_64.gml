@@ -1,3 +1,5 @@
+depth = room_height;
+
 if(global.tab){
 	#region general use variables
 	var _gui_w = display_get_gui_width() - 1;
@@ -72,17 +74,10 @@ if(global.tab){
 	var _console_textbox_w = _console_textbox_x2 - _console_textbox_x1;
 	
 	var _console_n_lines = floor(((_console_y2 - _console_y1) - (_margin * 4))/_str_h);
-	
-	var _response = "";
-	var _list = ds_list_create();
-	var _num;
-	var _var;								//variavel de uso genérico
 	#endregion
 	
 	#region console text
-	//interações e ações do console que só serão habilitadas quando o console for selecionado
 	if(global.console_select){
-		//pegar e computar comando dado
 		if(keyboard_check_released(vk_enter) && keyboard_string != ""){
 			actual_command = keyboard_string;
 			commands[n_commands] = keyboard_string;
@@ -99,65 +94,203 @@ if(global.tab){
 				console_offset++;
 			}
 			
-			args_command = string_split_ext(actual_command, [".", "(", ")", "=", ","], true);
+			args_command = string_split_ext(actual_command, [".", "(", ")", "=", ","], 1);
+			var _response = "";
 			
 			try{
-				switch args_command[0]{
-					case "obj_player":
-						switch args_command[1]{
-							case "state":
-									switch args_command[2]{
-										case "função":
-												_response = "atribuir novo estado de máquina";
-											break;
-										default:
-											_response = "comando não encontrado. tente novamente.";
-									}
-								break;
-							default:
-								_response = "comando não encontrado. tente novamente.";
-						}
-						break;
+				switch(args_command[0]){
+					#region spawns
 					case "spawn":
-						_response = instance_create_layer(real(args_action[1])*16,real(args_action[2])*16,"Instances_1",toelement(args_action[3]));
-						_response.depth = 0 + instance_number(obj_walls);
-						break;
+						_response = instance_create_layer((real(args_command[1])*16)+8,real(args_command[2])*16,"Instances_1",toelement(args_command[3]));
+					break;
+					#endregion
+					
+					#region upgrade
 					case "upgrade":
-						_num = collision_rectangle_list(args_command[1]*16,args_command[2]*16,args_command[3]*16,args_command[4]*16,obj_walls,0,1,_list,1);
+						var _list = ds_list_create();
+						var _num, _qt = 0;
+						var _material;
 						
-						if(_num > 0){
-							for(_i = 0; _i < _num; _i++){
-								if(_list[| _i].level + 1 < 3){
-									_list[| _i].level++;
+						if(can_be_real(args_command[1]) && can_be_real(args_command[2]) && can_be_real(args_command[3]) && can_be_real(args_command[4])){
+							_num = collision_rectangle_list(args_command[1]*16,args_command[2]*16,args_command[3]*16,args_command[4]*16,obj_walls,0,1,_list,1);
+							
+							if(_num > 0){
+								for(_i = 0; _i < _num; _i++){
+									switch _list[| _i].level{
+										case 0: _material = 1; break;
+										case 1: _material = 2; break;
+									}
+									
+									if(_list[| _i].level + 1 < 3 && obj_player.inventory[_material] > 0){
+										_list[| _i].level++;
+										obj_player.inventory[_material]--;
+										_qt++;
+									}
+							 	}
+								ds_list_destroy(_list);
+								if(_qt == 0 && obj_player.inventory[_material] <= 0){
+									_response = "Material insuficiente. Material necessário: [" + string(_material) + "] " + material_name(_material) + ".";
+								}else{
+									_response = string(_qt) + " paredes foram melhoradas.";
+								}
+							}else{
+								_response = "Nenhuma parede encontrada.";
+							}
+						}
+					break;
+					#endregion
+					
+					#region interact ls
+					case "interact_ls":
+						var _inst = search_mage_by_name_within_area(args_command[1],obj_player.x - 80, obj_player.bbox_top - 80, obj_player.x + 80, obj_player.bbox_top + 80);
+						if(_inst != noone){
+							_response = args_command[1] + ": " + _inst.interactions;
+						}else{
+							_response = args_command[1] + " não foi encontrada. tente outro nome.";
+						}
+					break;
+					#endregion
+					
+					#region interact
+					case "interact":
+						var _inst = search_mage_by_name_within_area(args_command[1],obj_player.x - 80, obj_player.bbox_top - 80, obj_player.x + 80, obj_player.bbox_top + 80);
+						if(_inst != noone){
+							if(real(args_command[2]) == 0){
+								_response = args_command[1] + ": Ao seu comando chefia!";
+								_inst.hired = true;
+							}else if(real(args_command[2]) == 1){
+								_response = args_command[1] + ": " + _inst.trivial_speak[round(random(2))];
+							}
+						}else{
+							_response = args_command[1] + " não foi encontrada. tente outro nome.";
+						}
+					break;
+					#endregion
+					
+					#region build
+					case "build":
+						var _xvar, _yvar;
+						var _col;
+						var _qtd = 0;
+						var _material;		//indice do material no inventario do player
+						
+						if(can_be_real(args_command[1]) && can_be_real(args_command[2]) && can_be_real(args_command[3]) && can_be_real(args_command[4])){
+							switch args_command[5]{
+								case "wall":
+									_material = 9;
+								break;
+							}
+
+							if(obj_player.inventory[_material] > 0){
+								_xvar = args_command[3] - args_command[1];		//pega a variação de quantos objetos vai construir horizontalmente
+								_yvar = args_command[4] - args_command[2];		//pega a variação de quantos objetos vai construir verticalmente
+								
+								for(_i = 0; _i < _xvar; _i++){
+									for(var _j = 0; _j < _yvar; _j++){
+										_col = collision_rectangle(args_command[1] * 16 + (_i * 16),args_command[2] * 16 + (_j * 16), args_command[1] * 16 + ((_i + 1) * 16),args_command[2] * 16 + ((_j + 1) * 16), all, 0, 0);
+										
+										if(_col == noone){
+											instance_create_layer(lerp(args_command[1] * 16 + (_i * 16),args_command[1] * 16 + ((_i + 1) * 16),0.5),args_command[2] * 16 + ((_j + 1) * 16),"Instances_1",obj_walls);
+											_qtd++;
+											obj_player.inventory[_material]--;
+										}
+										
+										if(obj_player.inventory[_material] == 0){
+											_i = _xvar;
+											_j = _yvar;
+										}
+									}
+								}
+								
+								_response = string(_qtd) + " " + args_command[5] + "/s foram construidos";
+							}else{
+								show_debug_message("bateu aqui");
+								_response = "Material insuficiente. Material necessário: [" + string(_material) + "] " + material_name(_material) + ".";
+							}
+						}else{
+							_response = "coordenadas inválidas. tente novamente.";
+						}
+					break;
+					#endregion
+					
+					#region restore
+					case "restore":
+						var _list = ds_list_create();
+						var _num, _qt = 0;
+						var _material;
+						
+						if(can_be_real(args_command[1]) && can_be_real(args_command[2]) && can_be_real(args_command[3]) && can_be_real(args_command[4])){
+							_num = collision_rectangle_list(args_command[1]*16,args_command[2]*16,args_command[3]*16,args_command[4]*16,obj_walls,0,1,_list,1);
+							
+							if(_num > 0){
+								for(_i = 0; _i < _num; _i++){
+									switch _list[| _i].level{
+										case 0: _material = 9; break;
+										case 1: _material = 1; break;
+										case 2: _material = 2; break;
+									}
+									
+									if(obj_player.inventory[_material] > 0){
+										_list[| _i].life = _list[| _i].max_life;
+									}
+							 	}
+								ds_list_destroy(_list);
+								if(_qt == 0 && obj_player.inventory[_material] <= 0){
+									_response = "Material insuficiente. Material necessário: [" + string(_material) + "] " + material_name(_material) + ".";
+								}else{
+									_response = string(_qt) + " paredes foram restauradas.";
+								}
+							}else{
+								_response = "Nenhuma parede encontrada.";
+							}
+						}
+					break;
+					#endregion
+					
+					#region move
+					case "move":
+						var _col1,_col2,_inst_type;
+						
+						if(can_be_real(args_command[1]) && can_be_real(args_command[2]) && can_be_real(args_command[3]) && can_be_real(args_command[4])){
+							_col1 = collision_rectangle(args_command[1] * 16, args_command[2] * 16, (args_command[1] * 16) + 16, (args_command[2] * 16) + 16, all, 0, 1);
+							_col2 = collision_rectangle(args_command[3] * 16, args_command[4] * 16, (args_command[3] * 16) + 16, (args_command[4] * 16) + 16, all, 0, 1);
+							
+							if((object_is_ancestor(_col1.object_index, obj_mages) || _col1.object_index == obj_walls) && _col2 == noone){
+								if(object_is_ancestor(_col1.object_index, obj_mages)){
+									_col1.position = [(args_command[3] * 16) + 8, (args_command[4] * 16) + 16];
+									_response = "mago deslocado de " + string(args_command[1]) + ", " + string(args_command[2]) + " para " + string(args_command[3]) + ", " + string(args_command[4])
+								}else if(_col1.object_index == obj_walls){
+									_col1.x = (args_command[3] * 16) + 8;
+									_col1.y = (args_command[4] * 16) + 16;
+									_response = "parede movida de " + string(args_command[1]) + ", " + string(args_command[2]) + " para " + string(args_command[3]) + ", " + string(args_command[4])
+								}
+							}else{
+								if(!object_is_ancestor(_col1.object_index, obj_mages) && _col1.object_index != obj_walls){
+									_response = "objeto " + string(_col1.object_index) + " inválido para a operação.";
+								}else if(_col2 != noone){
+									_response = "destino já ocupado."
 								}
 							}
-							_response = string(_num) + " paredes foram melhoradas.";
 						}else{
-							_response = "Nenhuma parede encontrada.";
+							_response = "coordenadas inválidas. tente novamente.";
 						}
-						break;
-					case "interact_ls":
-						_var = search_mage_by_name_within_area(args_command[1],obj_player.x - 80, obj_player.bbox_top - 80, obj_player.x + 80, obj_player.bbox_top + 80);
-						if(_var != noone){
-							_response = args_command[1] + ": " + _var.interactions;
-						}else{
-							_response = args_command[1] + " não foi encontrada. tente outro nome.";
+					break;
+					#endregion
+					
+					#region inventory ls
+					case "inventory_ls":
+						var _inventory = obj_player.inventory;
+						_response = "| ";
+						for(_i = 0; _i < array_length(_inventory); _i++){
+							_response += "[" + string(_i) + "] " + material_name(_i) + ": " + string(_inventory[_i]) + "| ";
 						}
-						break;
-					case "interact":
-						_var = search_mage_by_name_within_area(args_command[1],obj_player.x - 80, obj_player.bbox_top - 80, obj_player.x + 80, obj_player.bbox_top + 80);
-						if(_var != noone){
-							if(real(args_command[2]) == 0){
-								_response = "não ta pronto";
-							}else if(real(args_command[2]) == 1){
-								_response = args_command[1] + ": " + _var.trivial_speak[round(random(2))];
-							}
-						}else{
-							_response = args_command[1] + " não foi encontrada. tente outro nome.";
-						}
-						break;
+					break;
+					#endregion
+					
+					#region default
 					default:
 						_response = "comando não encontrado. tente novamente.";
+					#endregion
 				}
 			}catch(_response){
 				_response = "comando não encontrado. tente novamente.";
@@ -169,8 +302,8 @@ if(global.tab){
 			if(n_console_lines > _console_n_lines){
 				console_offset++;
 			}
+			
 		}
-		
 		//desenhar comando que está sendo dado
 		if(_console_n_lines > n_console_lines){
 			draw_text_ext(_console_textbox_x1, _console_textbox_y1 + _str_h * n_console_lines, keyboard_string, 0, _console_textbox_w);
@@ -206,7 +339,6 @@ if(global.tab){
 			keyboard_string = commands[index_selected_command];
 		}
 	}
-	
 	
 	//exibição de linhas anteriores do console
 	if(n_console_lines <= _console_n_lines){
