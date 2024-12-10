@@ -19,7 +19,6 @@ side_tab_offset = 0;
 n = 0;
 
 arr_commands = [
-	//"spawn",
 	"upgrade",
 	"interact_ls",
 	"interact",
@@ -30,12 +29,11 @@ arr_commands = [
 ];
 
 side_tab_tips = [
-	["Function: spawn(xpos,ypos,object)","Function: upgrade(x1,y1,x2,y2)","Function: interact_ls(name)","Function: interact(name, interação)","Function: build(x1,y1,x2,y2)","Function: restore(x1,y1,x2,y2)","move(fromx,fromy,tox,toy)","Command: inventory_ls"],
-	//["Função spawn", "spawn(xpos,ypos,object)", "return: id da instância"],
+	["Function: upgrade(x1,y1,x2,y2)","Function: interact_ls(name)","Function: interact(name, interação)","Function: build(x1,y1,x2,y2,obj)","Function: restore(x1,y1,x2,y2)","Function: move(fromx,fromy,tox,toy)","Command: inventory_ls"],
 	["Função upgrade","upgrade(x1,y1,x2,y2)","return: situação"],
 	["Função interact_ls","interact_ls(name)","return: interações possiveis"],
 	["Função interact","interact(name, interação)","return: resultado"],
-	["Função build","build(x1,y1,x2,y2)","retunr: n construções"],
+	["Função build","build(x1,y1,x2,y2,obj)","retunr: n construções"],
 	["Função restore","restore(x1,y1,x2,y2)","return: n restaurações"],
 	["Função move","move(fromx,fromy,tox,toy)","return: situação"],
 	["Comando inventory_ls", "inventory_ls", "return: inventário"]
@@ -43,14 +41,13 @@ side_tab_tips = [
 
 function side_tab_tips_index_correspondant(_command){
 	switch _command{
-		//case "spawn": return 1;
-		case "upgrade": return 2;
-		case "interact_ls": return 3;
-		case "interact": return 4;
-		case "build": return 5;
-		case "restore": return 6;
-		case "move": return 7;
-		case "inventory_ls": return 8;
+		case "upgrade": return 1;
+		case "interact_ls": return 2;
+		case "interact": return 3;
+		case "build": return 4;
+		case "restore": return 5;
+		case "move": return 6;
+		case "inventory_ls": return 7;
 		default: return 0;
 	}
 }

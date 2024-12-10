@@ -41,6 +41,13 @@ if(global.tab && global.console_select){
 						draw_mages_name("");
 					}
 					break;
+				case "interact":
+					try{
+						draw_mages_name(args_action[_index_action + 1]);
+					}catch(_error){
+						draw_mages_name("");
+					}
+					break;
 				case "build":
 					draw_cartesian_plan();
 					
@@ -72,6 +79,10 @@ if(global.tab && global.console_select){
 					}
 					break;
 					
+				case "inventory_ls":
+					draw_point(floor(obj_player.x/16), floor(obj_player.bbox_top/16));
+					break;
+				
 				default:
 					empty();
 			}
