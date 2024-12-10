@@ -4,9 +4,9 @@
 // Inherit the parent event
 event_inherited();
 
-enemy.vida					= 15;
+enemy.vida					= 12;
 enemy.drop_material_type	= 2;
-enemy.drop_rate				= 60;
+enemy.drop_rate				= 100;
 enemy.mov_speed				= 0.25;
 enemy.damage				= 2;
 enemy.cd_dano				= 180;

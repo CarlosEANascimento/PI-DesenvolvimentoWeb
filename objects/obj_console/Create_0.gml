@@ -19,7 +19,7 @@ side_tab_offset = 0;
 n = 0;
 
 arr_commands = [
-	"spawn",
+	//"spawn",
 	"upgrade",
 	"interact_ls",
 	"interact",
@@ -31,7 +31,7 @@ arr_commands = [
 
 side_tab_tips = [
 	["Function: spawn(xpos,ypos,object)","Function: upgrade(x1,y1,x2,y2)","Function: interact_ls(name)","Function: interact(name, interação)","Function: build(x1,y1,x2,y2)","Function: restore(x1,y1,x2,y2)","move(fromx,fromy,tox,toy)","Command: inventory_ls"],
-	["Função spawn", "spawn(xpos,ypos,object)", "return: id da instância"],
+	//["Função spawn", "spawn(xpos,ypos,object)", "return: id da instância"],
 	["Função upgrade","upgrade(x1,y1,x2,y2)","return: situação"],
 	["Função interact_ls","interact_ls(name)","return: interações possiveis"],
 	["Função interact","interact(name, interação)","return: resultado"],
@@ -43,7 +43,7 @@ side_tab_tips = [
 
 function side_tab_tips_index_correspondant(_command){
 	switch _command{
-		case "spawn": return 1;
+		//case "spawn": return 1;
 		case "upgrade": return 2;
 		case "interact_ls": return 3;
 		case "interact": return 4;

@@ -39,7 +39,7 @@ function random_name(){
 	    case 4:  return "Nilo";
 	    case 5:  return "Adel";
 	    case 6:  return "Dani";
-	    case 7:  return "João";
+	    case 7:  return "Joao";
 	    case 8:  return "Zeca";
 	    case 9:  return "Marcos";
 	    case 10: return "Val";
@@ -51,7 +51,7 @@ function random_name(){
 	    case 16: return "Tati";
 	    case 17: return "Roger";
 	    case 18: return "Clara";
-	    case 19: return "Léo";
+	    case 19: return "Leo";
 	    case 20: return "Vivi";
 	    case 21: return "Cami";
 	    case 22: return "Art";
@@ -62,7 +62,7 @@ function random_name(){
 	    case 27: return "Mari";
 	    case 28: return "Edi";
 	    case 29: return "Sofia";
-	    case 30: return "Flávio";
+	    case 30: return "Flavio";
 	}
 }
 

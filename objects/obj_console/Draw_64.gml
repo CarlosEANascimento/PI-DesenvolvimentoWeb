@@ -95,14 +95,14 @@ if(global.tab){
 			}
 			
 			args_command = string_split_ext(actual_command, [".", "(", ")", "=", ","], 1);
-			var _response = "";
+			var _response = "Comando incompleto ou não encontrado. Tente novamente.";
 			
 			try{
 				switch(args_command[0]){
 					#region spawns
-					case "spawn":
-						_response = instance_create_layer((real(args_command[1])*16)+8,real(args_command[2])*16,"Instances_1",toelement(args_command[3]));
-					break;
+					//case "spawn":
+					//	_response = instance_create_layer((real(args_command[1])*16)+8,real(args_command[2])*16,"Instances_1",toelement(args_command[3]));
+					//break;
 					#endregion
 					
 					#region upgrade
@@ -156,8 +156,12 @@ if(global.tab){
 						var _inst = search_mage_by_name_within_area(args_command[1],obj_player.x - 80, obj_player.bbox_top - 80, obj_player.x + 80, obj_player.bbox_top + 80);
 						if(_inst != noone){
 							if(real(args_command[2]) == 0){
-								_response = args_command[1] + ": Ao seu comando chefia!";
-								_inst.hired = true;
+								if(!_inst.hired){
+									_response = args_command[1] + ": Ao seu comando chefia!";
+									_inst.hired = true;
+								}else{
+									_response = args_command[1] + ": Ainda não está pronto...";
+								}
 							}else if(real(args_command[2]) == 1){
 								_response = args_command[1] + ": " + _inst.trivial_speak[round(random(2))];
 							}

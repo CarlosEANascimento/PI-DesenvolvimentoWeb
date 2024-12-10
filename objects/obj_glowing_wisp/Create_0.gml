@@ -7,7 +7,7 @@ event_inherited();
 enemy.vida					= 7;
 enemy.drop_material_type	= 8;
 enemy.drop_rate				= 60;
-enemy.mov_speed				= 2;
+enemy.mov_speed				= 1.5;
 enemy.damage				= 0.2;
 enemy.cd_dano				= 30;
 

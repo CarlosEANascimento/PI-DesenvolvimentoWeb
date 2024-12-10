@@ -11,7 +11,7 @@ var _col = collision_ellipse(
 if(_col != noone){
 	safe_range++;
 }else if(global.on_attack){
-	if(enemies_qtd < waves){
+	if(enemies_qtd < ceil(waves/3)){
 		if(irandom(5) == 1){
 			instance_create_layer(
 				(global.target[0] + sin(n) * safe_range), 
